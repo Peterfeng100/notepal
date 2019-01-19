@@ -1,0 +1,2 @@
+Algorithms and data structures that okay. So today we're going to talk about depth-first search what an exciting topic. 
+ and the note 

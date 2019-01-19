@@ -62,7 +62,7 @@ def startNote(name):
 	print("startRecordingArecord()> recording started")
 	currProc = rec_proc
 	
-	return tell("Your note " + str(currName) + " has been started.")
+	return ask("Your note: " + str(currName) + " has been started.")
 	
 @assist.action("newPage")
 def newPage():
@@ -86,7 +86,7 @@ def newPage():
 	print("startRecordingArecord()> rec_proc pid= " + str(rec_proc.pid))
 	print("startRecordingArecord()> recording started")
 	currProc = rec_proc
-	return tell("Ok, you are now on page " + str(currPage) + ".")
+	return ask("Ok, you are now on page " + str(currPage) + ".")
 
 @assist.action("endNote")
 def endNote():
@@ -105,10 +105,15 @@ def endNote():
 	currProc = None
 	print("stopRecordingArecord()> Recording stopped")
 	
+	for fname in sorted(os.listdir(currDir)):
+		if fname.endswith(".wav"):
+			py_args = ['python', 'SpeechToText.py' , '--filename' , os.path.join(currDir,fname)]
+			subprocess.Popen(py_args)
 	temp = currPage
 	currPage = 1
 	currStatus = "READY"
 	currDir = None
+	
 	#call speech to text APIs, upload text and images
 	return tell("Ok, your note " + currName + " with " + str(temp) + " pages is now completed. It has been saved automatically and should be viewable in your account in a few minutes!")
 
