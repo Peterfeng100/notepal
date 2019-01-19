@@ -62,7 +62,7 @@ def startNote(name):
 	print("startRecordingArecord()> recording started")
 	currProc = rec_proc
 	
-	return ask("Your note: " + str(currName) + " has been started.")
+	return ask("Your note for " + str(currName) + " has been started.")
 	
 @assist.action("newPage")
 def newPage():
@@ -115,7 +115,7 @@ def endNote():
 	currDir = None
 	
 	#call speech to text APIs, upload text and images
-	return tell("Ok, your note " + currName + " with " + str(temp) + " pages is now completed. It has been saved automatically and should be viewable in your account in a few minutes!")
+	return tell("Ok, your note for" + currName + " with " + str(temp) + " pages is now completed. It has been saved automatically and should be viewable in your account in a few minutes!")
 
 
 if __name__ == "__main__":
