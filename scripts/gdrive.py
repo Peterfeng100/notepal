@@ -9,6 +9,7 @@ from apiclient.http import MediaFileUpload
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
+
 def main():
     """Shows basic usage of the Drive v3 API.
     Prints the names and ids of the first 10 files the user has access to.
@@ -26,7 +27,7 @@ def main():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                'scripts/credentials.json', SCOPES)
             creds = flow.run_local_server()
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
@@ -48,13 +49,16 @@ def main():
     # Setup file metadata
     metadata = {
         'name': 'test_file',
-        'mimeType': 'image/jpeg'
+        'mimeType': 'application/pdf'
     }
-    media = MediaFileUpload('abc.jpg',
-                            mimetype='image/jpeg',
+    media = MediaFileUpload('scripts/test.pdf',
+                            mimetype='application/pdf',
                             resumable=True)
-    file = service.files().create(body=metadata, media_body=media, fields='id').execute()
-    print(file)
+    fileLink = (service.files().create(body=metadata, media_body=media, fields='webViewLink').execute())['webViewLink']
+    print(fileLink)
+
+    #results = service.files().list(pageSize=10, fields="nextPageToken, files(id, name, webViewLink)").execute()
+    #items = results.get('files', [])
 
 if __name__ == '__main__':
     main()
