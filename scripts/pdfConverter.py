@@ -4,5 +4,7 @@ pdf = FPDF()
 imagelist = ["scripts/abc.jpg"]
 for image in imagelist:
     pdf.add_page()
-    pdf.image(image)
+    pdf.image(image, 0, 0, 185, 120)
 pdf.output("yourfile.pdf", "F")
+
+
