@@ -6,11 +6,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from apiclient.http import MediaFileUpload
 
+import argparse
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 
-def main():
+def main(inputFile):
     """Shows basic usage of the Drive v3 API.
     Prints the names and ids of the first 10 files the user has access to.
     """
@@ -48,10 +49,10 @@ def main():
 
     # Setup file metadata
     metadata = {
-        'name': 'test_file',
+        'name': inputFile,
         'mimeType': 'application/pdf'
     }
-    media = MediaFileUpload('scripts/test.pdf',
+    media = MediaFileUpload(inputFile,
                             mimetype='application/pdf',
                             resumable=True)
     fileLink = (service.files().create(body=metadata, media_body=media, fields='webViewLink').execute())['webViewLink']
@@ -61,4 +62,8 @@ def main():
     #items = results.get('files', [])
 
 if __name__ == '__main__':
-    main()
+   parser = argparse.ArgumentParser()
+   parser.add_argument("--filename", type=str, default="test")
+   args = parser.parse_args()
+
+   main(args.filename)
