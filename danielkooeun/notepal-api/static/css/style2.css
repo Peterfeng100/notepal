@@ -102,6 +102,12 @@ a:active { text-decoration: none; }
 .course-code-line.blue { background-color: #008FAC; }
 .course-code-line.green { background-color: #539B04; }
 
+.modified-light {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .modified {
 	color: #666666;
 	font-size: 18px;

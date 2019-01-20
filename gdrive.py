@@ -1,6 +1,9 @@
 from __future__ import print_function
 import pickle
 import os.path
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -10,6 +13,13 @@ import argparse
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
+# Use the application default credentials
+cred = credentials.Certificate("danielkooeun/notepal-api/helpers/uofthacks-1547875157861-firebase-adminsdk-2gjh2-e584001b8e.json")
+firebase_admin.initialize_app(cred, {
+  'projectId': 'uofthacks-1547875157861',
+})
+
+db = firestore.client()
 
 def main(inputFile):
     """Shows basic usage of the Drive v3 API.
@@ -35,18 +45,6 @@ def main(inputFile):
             pickle.dump(creds, token)
     service = build('drive', 'v3', credentials=creds)
 
-    # results = service.files().list(
-    #     pageSize=10, fields="nextPageToken, files(id, name)").execute()
-    # items = results.get('files', [])
-    # print(items)
-
-    # if not items:
-    #     print('No files found.')
-    # else:
-    #     print('Files:')
-    #     for item in items:
-    #         print(u'{0} ({1})'.format(item['name'], item['id']))
-
     # Setup file metadata
     metadata = {
         'name': inputFile,
@@ -56,10 +54,14 @@ def main(inputFile):
                             mimetype='application/pdf',
                             resumable=True)
     fileLink = (service.files().create(body=metadata, media_body=media, fields='webViewLink').execute())['webViewLink']
-    print(fileLink)
 
-    #results = service.files().list(pageSize=10, fields="nextPageToken, files(id, name, webViewLink)").execute()
-    #items = results.get('files', [])
+
+    doc_ref = db.collection(u'documents').document()
+    doc_ref.set({
+        u'link': unicode(fileLink, "utf-8"),
+        u'name': unicode(inputFile, "utf-8")
+    })
+    print(fileLink)
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
