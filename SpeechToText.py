@@ -51,9 +51,15 @@ if __name__ == "__main__":
 	print("Result text", resultText)
 	#make point form 
 	resultText = ' '.join(resultText.split())
-	resultText = resultText.replace(".", "\n-")
-	resultText = resultText.replace("?", "\n-")
-	resultText = resultText.replace("!", "\n-")
+	resultText = resultText.rstrip(' ')
+	resultText = resultText.rstrip('.')
+	resultText = resultText.rstrip('?')
+	resultText = resultText.rstrip('!')
+	resultText = resultText.replace(".", ".\n-")
+	resultText = resultText.replace("?", "?\n-")
+	resultText = resultText.replace("!", "!\n-")
+
+
 
 	print("New result text", resultText)
 
