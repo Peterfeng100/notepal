@@ -12,9 +12,12 @@ module.exports = (context, callback) => {
     formatted = [];
     documents.forEach((doc) => {
       formatted.push({
-        id: doc.id,
+        id: typeof doc.data().name === 'string'
+          ? doc.data().name.replace(/\s+/g, '-').toLowerCase()
+          : doc.id,
         name: doc.data().name,
         link: doc.data().link,
+        thumbnail: doc.data().thumbnail,
         date: moment(doc._createTime._seconds*1000-21600000).format('lll'),
       });
     });
