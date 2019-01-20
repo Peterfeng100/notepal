@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style2.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <header class="course-header" id="header">
+      <div class="logo-div">
+        <img class="logo-img" id="logo" src="../static/images/logo-white.svg">
+      </div>
+      <nav class="logout">
+        <a class="nav-a login" tabindex="0" href="index.html">Log Out</a>
+      </nav>
+    </header>
+
+    <div class="courses-landing" id="to-top">
+      <div class="course-landing-flex">
+        <div class="course-div">
+          <div class="course-box create-new" id="create"></div>
+          <div class="course-code-div">
+            <p class="course-code create">Create</p>
+          </div>
+        </div>
+
+        <div class="recent-div" id="recent">
+          <p class="recent">Recent</p>
+          <div class="course-div">
+            <div class="course-box" id="course-box"></div>
+            <div class="course-code-div">
+              <p class="course-code">AER201</p>
+              <div class="course-code-line"></div>
+            </div>
+            <p class="modified">Modified 12:03PM</p>
+          </div>
+        </div>
+        <div class="course-div">
+          <div class="course-box" id="course-box"></div>
+          <div class="course-code-div">
+            <p class="course-code">JRE420</p>
+            <div class="course-code-line"></div>
+          </div>
+          <p class="modified">Modified 12:03PM</p>
+        </div>
+        <div class="course-div">
+          <div class="course-box" id="course-box"></div>
+          <div class="course-code-div">
+            <p class="course-code">ECE259</p>
+            <div class="course-code-line"></div>
+          </div>
+          <p class="modified">Modified 12:03PM</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="courses-bar">
+      <div>
+        <div class="bar-buttons">
+          <i class="material-icons md-36">view_list</i>
+        </div>
+        <div class="bar-buttons">
+          <i class="material-icons md-36">sort_by_alpha</i>
+        </div>
+      </div>
+      <div class="search-container">
+        <label class="search-bar-label" for="search-courses">Search</label>
+        <input class="search-bar" id="search-courses" placeholder="Search">
+        <i class="material-icons md-36 search-icon">search</i>
+      </div>
+    </div>
+
+    <div class="courses-div" id="to-top">
+      <% for(var i = 0; i < documents.length; i++) { %>
+        <a class="course-div" href="<%= documents[1].link %>">
+          <div class="course-box" id="course-box"></div>
+          <div class="course-code-div">
+            <p class="course-code"><%= documents[i].name %></p>
+            <div class="course-code-line"></div>
+          </div>
+          <p class="modified"><%= documents[i].date %></p>
+        </a>
+      <% } %>
+    <footer>
+      <div class="footer-container">
+        <p class="footer-txt">Copyright © 2019 notepal Inc.</p> 
+        <a href="#header"><u class="footer-txt">Back to top</u></a>
+      </div>
+    </footer>
+  </body>
+
+</html>
