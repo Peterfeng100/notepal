@@ -373,6 +373,11 @@ input[type='checkbox'] { display: none; }
     width: 50%;
 }
 
+.design-img {
+    max-width: 1200px;
+    width: 100%;
+}
+
 .landing-img-1 {
     width: 45%;
 }
