@@ -1,1 +1,1 @@
-export GOOGLE_APPLICATION_CREDENTIALS="/home/pi/Desktop/notepal/UofTHacks-d74e0f51026e.json"
+export GOOGLE_APPLICATION_CREDENTIALS="/home/pi/Desktop/notepal/notepal-uofthacks-cf972519f711.json"

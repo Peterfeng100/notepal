@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_assistant import Assistant, ask, tell, event
 from picture import captureImage
+from makePDF import makePDF
 import cv2
 import time
 import requests
@@ -14,14 +15,6 @@ currName = "Default"
 currProc = None
 currStatus = "READY"
 currDir = None
-
-#POST function
-def post(r):
-	with open("/home/linaro/Desktop/image.jpg", "rb") as f:
-		data = f.read()
-		image = data.encode("base64")
-		r = requests.post("http://34.201.113.132:3000/post_data", data={"img":image})
-		return r
 
 #start of flask app
 app = Flask(__name__)
@@ -44,18 +37,19 @@ def startNote(name):
 	
 	currStatus = "STARTED"
 	currName = name
-	filepath = "Notes/" + currName
+	name = name.replace(" ","")
+	filepath = "Notes/" + name
 	
 	counter = 1
-	while os.path.exists("%s/Note %d"%(filepath,counter)):
+	while os.path.exists("%s/Note%d"%(filepath,counter)):
 		counter += 1
-	directory = "%s/Note %d"%(filepath,counter)
+	directory = "%s/Note%d"%(filepath,counter)
 
 	if not os.path.exists(directory):
 		os.makedirs(directory)
 	currDir = directory
 
-	recordName = os.path.join(directory,"record 1.wav")
+	recordName = os.path.join(directory,"record1.wav")
 	proc_args = ['arecord', '-D' , 'plughw:1,0' , '-c 2' , '-r' , '16' , '-f' , 'S16_LE' , recordName]
 	rec_proc = subprocess.Popen(proc_args, shell=False, preexec_fn=os.setsid)
 	print("startRecordingArecord()> rec_proc pid= " + str(rec_proc.pid))
@@ -74,13 +68,14 @@ def newPage():
 	if currStatus != "STARTED":
 		return tell("OK, I know you weren't the brightest, but I was hoping you would know to start a new note before turning to the next page.")
 
-	captureImage("%s/image %d"%(currDir,currPage))
+	captureImage("%s/image%d"%(currDir,currPage))
 	os.killpg(currProc.pid, signal.SIGTERM)
 	currProc.terminate()
 	currProc = None
 	print("stopRecordingArecord()> Recording stopped")
+	time.sleep(1)
 	currPage += 1
-	recordName = os.path.join(currDir,"record %d.wav"%(currPage))
+	recordName = os.path.join(currDir,"record%d.wav"%(currPage))
 	proc_args = ['arecord', '-D' , 'plughw:1,0' , '-c 2' , '-r' , '16' , '-f' , 'S16_LE' , recordName]
 	rec_proc = subprocess.Popen(proc_args, shell=False, preexec_fn=os.setsid)
 	print("startRecordingArecord()> rec_proc pid= " + str(rec_proc.pid))
@@ -99,7 +94,7 @@ def endNote():
 	if currStatus != "STARTED":
 		return tell("OK, I know you weren't the brightest, but I was hoping you would know to start a new note before ending it.")
 	
-	captureImage("%s/image %d"%(currDir,currPage))
+	captureImage("%s/image%d"%(currDir,currPage))
 	os.killpg(currProc.pid, signal.SIGTERM)
 	currProc.terminate()
 	currProc = None
@@ -109,15 +104,28 @@ def endNote():
 		if fname.endswith(".wav"):
 			py_args = ['python', 'SpeechToText.py' , '--filename' , os.path.join(currDir,fname)]
 			subprocess.Popen(py_args)
+	
 	temp = currPage
 	currPage = 1
 	currStatus = "READY"
 	currDir = None
 	
-	#call speech to text APIs, upload text and images
-	return tell("Ok, your note for" + currName + " with " + str(temp) + " pages is now completed. It has been saved automatically and should be viewable in your account in a few minutes!")
+	return tell("Ok, your note for " + currName + " with " + str(temp) + " sections is now completed. I am now preparing this note for export.")
 
-
+@assist.action("exportNote")
+def exportNote():
+	global currName
+	
+	for dir in sorted(os.listdir("Notes")):
+		makePDF("Notes/" + dir, currName)
+	
+	for pdfs in sorted(os.listdir("PDFs")):
+		if pdfs.endswith(".pdf"):
+			py_args = ['python', 'gdrive.py' , '--filename' , os.path.join("PDFs", pdfs)]
+			subprocess.Popen(py_args)
+			
+	return tell("All notes have been updated and exported!")
+	
 if __name__ == "__main__":
 	if not os.path.exists("Notes"):
 		os.makedirs("Notes")
