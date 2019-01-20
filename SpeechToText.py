@@ -51,7 +51,7 @@ if __name__ == "__main__":
 	#make point form 
 	resultText.replace(".", ".\n- ")
 	resultText.replace("?", ".\n- ")
-	resultText.replace(".", ".\n- ")
+	resultText.replace("!", ".\n- ")
 
 
 	
