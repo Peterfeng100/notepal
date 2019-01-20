@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Notes</title>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
     <link rel="stylesheet" type="text/css" href="../static/css/style2.css">
@@ -30,9 +31,9 @@
         <div class="recent-div" id="recent">
           <p class="recent">Recent</p>
           <a class="course-div" href="<%= documents[0].link %>" target="_blank">
-            <div class="course-box" id="course-box"></div>
+            <div class="course-box" id="course-box" style="background-image: url(../static/images/courses/<%= documents[0].color %>.png)"></div>
             <div class="course-code-div">
-              <p class="course-code"><%= documents[0].name %></p>
+              <p class="course-code" ><%= documents[0].name %></p>
               <div class="course-code-line"></div>
             </div>
             <p class="modified-light"><%= documents[0].date %></p>
@@ -41,7 +42,7 @@
 
         <% for(var i = 1; i < minLength; i++) { %>
           <a class="course-div" href="<%= documents[i].link %>" target="_blank">
-            <div class="course-box" id="course-box"></div>
+            <div class="course-box" id="course-box" style="background-image: url(../static/images/courses/<%= documents[i].color %>.png)"></div>
             <div class="course-code-div">
               <p class="course-code"><%= documents[i].name %></p>
               <div class="course-code-line"></div>
@@ -71,8 +72,8 @@
     <div class="courses-div" id="bottom-section">
       <% for(var i = 0; i < documents.length; i++) { %>
         <a id="<%= documents[i].id %>" class="course-div" href="<%= documents[i].link %>" target="_blank">
-          <div id="course-box-<%= documents[i].id %>" class="course-box"></div>
-          <span id="thumbnail-<%= documents[i].id %>"></span>
+          <div id="course-box-<%= documents[i].id %>" class="course-box" style="background-image: url(../static/images/courses/<%= documents[i].color %>.png)"></div>
+          <span id="thumbnail-<%= documents[i].id %>" hidden></span>
           <div class="course-code-div">
             <p class="course-code"><%= documents[i].name %></p>
             <div class="course-code-line"></div>

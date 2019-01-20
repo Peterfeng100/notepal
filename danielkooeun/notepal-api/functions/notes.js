@@ -19,6 +19,7 @@ module.exports = (context, callback) => {
         link: doc.data().link,
         thumbnail: doc.data().thumbnail,
         date: moment(doc._createTime._seconds*1000-21600000).format('lll'),
+        color: ['blue', 'green', 'purple', 'red', 'yellow'][formatted.length%5],
       });
     });
     return ejs.renderFile(
