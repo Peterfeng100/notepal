@@ -48,11 +48,14 @@ if __name__ == "__main__":
 	#print("Final transcript:", resultText)
 	file = open(output_txt, "w")
 	
+	print("Result text", resultText)
 	#make point form 
-	resultText.replace(".", ".\n- ")
-	resultText.replace("?", ".\n- ")
-	resultText.replace("!", ".\n- ")
+	resultText = ' '.join(resultText.split())
+	resultText = resultText.replace(".", "\n-")
+	resultText = resultText.replace("?", "\n-")
+	resultText = resultText.replace("!", "\n-")
 
+	print("New result text", resultText)
 
 	
 	file.write(resultText)
