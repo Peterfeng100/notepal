@@ -15,10 +15,11 @@ def fill_page(doc, text, image, image_num):
 		doc.append(text)
 	
 def makePDF(input_dir, course):
-	doc = Document(course)
-
+	geometry_options = {"tmargin": "3cm", "lmargin": "3cm", "rmargin":"3cm",  "bmargin":"3cm"}
+	doc = Document(course, geometry_options=geometry_options)
+    
 	doc.preamble.append(Command('title', course))
-	doc.preamble.append(Command('author', "Notepal"))
+	doc.preamble.append(Command('author', "notepal"))
 	doc.preamble.append(Command('date', NoEscape(r'\today')))
 	doc.append(NoEscape(r'\maketitle'))
     

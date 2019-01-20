@@ -16,14 +16,6 @@ currProc = None
 currStatus = "READY"
 currDir = None
 
-#POST function
-def post(r):
-	with open("/home/linaro/Desktop/image.jpg", "rb") as f:
-		data = f.read()
-		image = data.encode("base64")
-		r = requests.post("http://34.201.113.132:3000/post_data", data={"img":image})
-		return r
-
 #start of flask app
 app = Flask(__name__)
 
