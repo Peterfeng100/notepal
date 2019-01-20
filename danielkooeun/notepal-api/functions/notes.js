@@ -23,7 +23,10 @@ module.exports = (context, callback) => {
     });
     return ejs.renderFile(
       templatePath,
-      { documents: formatted },
+      {
+        documents: formatted,
+        minLength: Math.min(3, formatted.length),
+      },
       {},
       (err, response) => callback(err, Buffer.from(response || ''), {'Content-Type': 'text/html'})
     );

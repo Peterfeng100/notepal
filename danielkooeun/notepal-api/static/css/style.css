@@ -263,7 +263,7 @@ input[type='checkbox'] { display: none; }
     position: absolute;
     left: -21%;
     top: -21%;
-    background: url(../images/landing-2.png);
+    background: url(../images/landing-1.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-size: 100%;
@@ -334,7 +334,8 @@ input[type='checkbox'] { display: none; }
 .landing-h {
     width: 40%;
     color: #FFFFFF;
-    font-size: 4em;
+    /*font-size: 4em;*/
+    font-size: 6vw;
     font-weight: bold;
     line-height: 1.2em;
     text-align: right;
@@ -431,5 +432,12 @@ h2 {
     .landing-p {
         font-size: 1.5em;
         padding: 40px 0px 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .get-start {
+      font-size: 25px;
+      padding: 18px 50px;
     }
 }

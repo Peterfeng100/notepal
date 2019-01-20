@@ -55,6 +55,7 @@ def main(inputFile):
                             mimetype='application/pdf',
                             resumable=True)
     file = service.files().create(body=metadata, media_body=media, fields='webViewLink').execute()
+    print(file)
 
     doc_ref = db.collection(u'documents').document()
     doc_settings = {
@@ -62,9 +63,10 @@ def main(inputFile):
         u'name': unicode(inputName, 'utf-8')
     }
 
-    if file['hasThumbnail']:
-        doc_settings[u'thumbnail'] = file['thumbnailLink']
+    if file[u'hasThumbnail']:
+        doc_settings[u'thumbnail'] = file[u'thumbnailLink']
     doc_ref.set(doc_settings)
+    print(file[u'hasThumbnail'])
     print(file['hasThumbnail'])
     print(file['thumbnailLink'])
     print(file['webViewLink'])
