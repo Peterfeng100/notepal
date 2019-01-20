@@ -1,0 +1,2 @@
+Okay, so good morning everyone today. We're going to talk a little bit about the use of SQL in relational databases and what it is and why it's important to development. 
+ next page 
