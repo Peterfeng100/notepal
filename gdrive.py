@@ -53,15 +53,18 @@ def main(inputFile):
     media = MediaFileUpload(inputFile,
                             mimetype='application/pdf',
                             resumable=True)
-    fileLink = (service.files().create(body=metadata, media_body=media, fields='webViewLink').execute())['webViewLink']
-
+    file = service.files().create(body=metadata, media_body=media, fields='webViewLink').execute()
 
     doc_ref = db.collection(u'documents').document()
-    doc_ref.set({
-        u'link': fileLink,
-        u'name': inputFile
-    })
-    print(fileLink)
+    doc_settings = {
+        u'link': file['webViewLink'],
+        u'name': inputFile.split('/')[1].split('.')[0]
+    }
+
+    if file['hasThumbnail']:
+        doc_settings[u'thumbnail'] = file['thumbnailLink']
+    doc_ref.set(doc_settings)
+    print(file['webViewLink'])
 
 if __name__ == '__main__':
    parser = argparse.ArgumentParser()
