@@ -47,6 +47,24 @@ if __name__ == "__main__":
 	
 	#print("Final transcript:", resultText)
 	file = open(output_txt, "w")
+	
+	print("Result text", resultText)
+	#make point form 
+	resultText = ' '.join(resultText.split())
+	resultText = resultText.rstrip(' ')
+	resultText = resultText.rstrip('.')
+	resultText = resultText.rstrip('?')
+	resultText = resultText.rstrip('!')
+	resultText = resultText.replace(".", ".\n->")
+	resultText = resultText.replace("?", "?\n->")
+	resultText = resultText.replace("!", "!\n->")
+	resultText = "-> " + resultText
+
+
+
+	print("New result text", resultText)
+
+	
 	file.write(resultText)
 
 	# for i, result in enumerate(response.results):
