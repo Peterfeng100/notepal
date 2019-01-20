@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.1.19)  19 JAN 2019 20:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.1.19)  19 JAN 2019 20:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,19 +697,17 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 15.
 
 
-LaTeX Warning: File `Notes/Algorithms and Data Structures/Note 1/image 1.jpg' n
-ot found on input line 24.
+LaTeX Warning: File `image1.jpg' not found on input line 24.
 
 
-! Package pdftex.def Error: File `Notes/Algorithms and Data Structures/Note 1/i
-mage 1.jpg' not found.
+! Package pdftex.def Error: File `image1.jpg' not found.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.24 ...ms and Data Structures/Note 1/image 1.jpg}
-                                                  %
+l.24 \includegraphics[width=300px]{image1.jpg}
+                                              %
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -717,29 +715,35 @@ If that doesn't work, type  X <return>  to quit.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 24.
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) 
-AED: lastpage setting LastPage
+)
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
+
+ []
+
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./Algorithms and Data Structures.aux) ) 
+
+AED: lastpage setting LastPage
+[2] (./Algorithms and Data Structures.aux) ) 
 Here is how much of TeX's memory you used:
  2706 strings out of 494945
- 36770 string characters out of 6181032
+ 36764 string characters out of 6181032
  82253 words of memory out of 5000000
  5947 multiletter control sequences out of 15000+600000
  33746 words of font info for 32 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  39i,6n,25p,283b,284s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm
--ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
-></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmtt10.pfb>
-Output written on "Algorithms and Data Structures.pdf" (1 page, 119760 bytes).
+{/usr/share/texmf/fonts/enc/dvips/l
+m/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12
+.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/
+type1/public/lm/lmtt10.pfb>
+Output written on "Algorithms and Data Structures.pdf" (2 pages, 118271 bytes).
+
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 32 PDF objects out of 1000 (max. 8388607)
+ 22 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

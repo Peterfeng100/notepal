@@ -10,13 +10,16 @@ def fill_page(doc, section, text, image, image_num):
     :type doc: :class:`pylatex.document.Document` instance
     """
     print("DEBUG: " + text)
-    print("DEBUG: " + image)
     f = open(text, "r")
     text = f.read()
+    
+    image_abspath = "image 1.jpg"
+  
+    print("DEBUG: " + image_abspath)
     with doc.create(Section(section)):
 		with doc.create(Subsection("Page " + str(image_num))):
 			with doc.create(Figure(position='h!')) as img:
-				img.add_image(image, width='300px')
+				img.add_image(image_abspath, width='300px')
                 img.add_caption("Image " + str(image_num))    
 		doc.append(text)
 	
@@ -32,7 +35,7 @@ def makePDF(input_dir, course):
 	for dir in sorted (os.listdir(input_dir,)):
 		for fname in sorted(os.listdir(os.path.join(input_dir, dir))):
 			if fname.endswith(".jpg"):
-				fill_page(doc, dir, os.path.join(os.path.join(input_dir, dir), record + ".wav.txt"), os.path.join(os.path.join(input_dir, dir), fname), counter)
+				fill_page(doc, dir, os.path.join(os.path.join(input_dir, dir), "record " + str(counter) + ".wav.txt"), os.path.join(os.path.join(input_dir, dir), "image " + str(counter) + ".jpg"), counter)
 				counter += 1
 		counter = 1
 	doc.generate_pdf(os.path.join("PDFs", course), clean_tex=False)
