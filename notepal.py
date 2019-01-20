@@ -121,6 +121,8 @@ def endNote():
 if __name__ == "__main__":
 	if not os.path.exists("Notes"):
 		os.makedirs("Notes")
+	if not os.path.exists("PDFs"):
+		os.makedirs("PDFs")
 	app.run(debug=True)
 
 
