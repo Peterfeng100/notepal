@@ -1,1 +1,4 @@
-Okay, good morning. Everyone today. We're going to talk a little bit about SQL and how we use it in a relational databases next page. 
+the test version of notepal 
+ introduction to databases has been started. Good morning everyone today. I will be talking a little bit about the use of SQL in the development industry. 
+ I've never heard that in my next flight. 
+ Say that one more time next page. 

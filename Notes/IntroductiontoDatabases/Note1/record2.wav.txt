@@ -1,2 +1,2 @@
-Okay, let's continue talking about SQL. But specifically we want to start with relational-algebra see how that leads into SQL and 
- Just keep forgetting what to say. That's why I make sure all. 
+All right, so just to text Daniel hypothesis. I'm going to say the word sequel a few times. You know, what a SQL database is its database that's based upon relational algebra and this note. 
+ That say that again and this note. 

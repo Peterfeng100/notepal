@@ -58,8 +58,8 @@ def main(inputFile):
 
     doc_ref = db.collection(u'documents').document()
     doc_ref.set({
-        u'link': unicode(fileLink, "utf-8"),
-        u'name': unicode(inputFile, "utf-8")
+        u'link': fileLink,
+        u'name': inputFile
     })
     print(fileLink)
 

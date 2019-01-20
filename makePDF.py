@@ -30,7 +30,7 @@ def makePDF(input_dir, course):
 					fill_page(doc, os.path.join(os.path.join(input_dir, dir), "record" + str(counter) + ".wav.txt"), os.path.join(os.path.join(input_dir, dir), "image" + str(counter) + ".jpg"), counter)
 					counter += 1
 		counter = 1
-	doc.generate_pdf("PDFs/" + course, clean = True, clean_tex=False)
+	doc.generate_pdf("PDFs/" + course, clean = True, clean_tex=True)
     
 if __name__ == "__main__":
 	makePDF("Notes/IntroductiontoDatabases", "Introduction to Databases")
