@@ -126,6 +126,12 @@ def exportNote():
 	
 	for dir in sorted(os.listdir("Notes")):
 		makePDF("Notes/" + dir, currName)
+	
+	for pdfs in sorted(os.listdir("PDFs")):
+		if pdfs.endswith(".pdf"):
+			py_args = ['python', 'gdrive.py' , '--filename' , os.path.join("PDFs", pdfs)]
+			subprocess.Popen(py_args)
+			
 	return tell("All notes have been updated and exported!")
 	
 if __name__ == "__main__":

@@ -1,1 +1,2 @@
-So to continue our conversation from the last board, we need to really talk a little bit more about relational. What are tusken Raiders? 
+Okay, let's continue talking about SQL. But specifically we want to start with relational-algebra see how that leads into SQL and 
+ Just keep forgetting what to say. That's why I make sure all. 
