@@ -59,12 +59,14 @@ def main(inputFile):
     doc_ref = db.collection(u'documents').document()
     doc_settings = {
         u'link': file['webViewLink'],
-        u'name': inputName
+        u'name': unicode(inputName, 'utf-8')
     }
 
     if file['hasThumbnail']:
         doc_settings[u'thumbnail'] = file['thumbnailLink']
     doc_ref.set(doc_settings)
+    print(file['hasThumbnail'])
+    print(file['thumbnailLink'])
     print(file['webViewLink'])
 
 if __name__ == '__main__':
