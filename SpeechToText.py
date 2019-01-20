@@ -55,9 +55,10 @@ if __name__ == "__main__":
 	resultText = resultText.rstrip('.')
 	resultText = resultText.rstrip('?')
 	resultText = resultText.rstrip('!')
-	resultText = resultText.replace(".", ".\n-")
-	resultText = resultText.replace("?", "?\n-")
-	resultText = resultText.replace("!", "!\n-")
+	resultText = resultText.replace(".", ".\n->")
+	resultText = resultText.replace("?", "?\n->")
+	resultText = resultText.replace("!", "!\n->")
+	resultText = "-> " + resultText
 
 
 
