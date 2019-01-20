@@ -1,0 +1,5 @@
+Your Note 4 demo has been started. 
+ Hey everyone. This is a test to see if we can classify things into Point forms. 
+ That should have been a point. 
+ And this should have been another point. 
+ and note 
