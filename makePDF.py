@@ -24,8 +24,9 @@ def makePDF(input_dir, course):
 	doc.append(NoEscape(r'\maketitle'))
     
 	counter = 1
+	big_counter = 1
 	for dir in sorted (os.listdir(input_dir,)):
-		with doc.create(Section(dir)):
+		with doc.create(Section(dir[:4] + str(big_counter)):
 			for fname in sorted(os.listdir(os.path.join(input_dir, dir))):
 				if fname.endswith(".jpg"):
 					fill_page(doc, os.path.join(os.path.join(input_dir, dir), "record" + str(counter) + ".wav.txt"), os.path.join(os.path.join(input_dir, dir), "image" + str(counter) + ".jpg"), counter)

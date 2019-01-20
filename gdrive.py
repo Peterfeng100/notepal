@@ -46,8 +46,9 @@ def main(inputFile):
     service = build('drive', 'v3', credentials=creds)
 
     # Setup file metadata
+    inputName = inputFile.split('/')[1].split('.')[0]
     metadata = {
-        'name': inputFile,
+        'name': inputName,
         'mimeType': 'application/pdf'
     }
     media = MediaFileUpload(inputFile,
@@ -58,7 +59,7 @@ def main(inputFile):
     doc_ref = db.collection(u'documents').document()
     doc_settings = {
         u'link': file['webViewLink'],
-        u'name': inputFile.split('/')[1].split('.')[0]
+        u'name': inputName
     }
 
     if file['hasThumbnail']:
