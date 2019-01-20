@@ -4,7 +4,7 @@ import argparse
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--filename", type=str, default="test")
+	parser.add_argument("--filename", type=str, default="test.wav")
 	args = parser.parse_args()
 	
 	speech_file = args.filename
